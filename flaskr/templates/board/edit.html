@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <form method="post" id="editForm">
+        <table class="table table-bordered table-hover">
+            <colgroup>
+                <col width="150">
+                <col>
+            </colgroup>
+            <tr>
+                <th>제목</th>
+                <td>
+                    <input type="text" id="title" name="title" class="form-control" placeholder="제목" value="{{ board['title'] }}" required autofocus>
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td>
+                    <textarea id="content" name="content" class="form-control" rows="10" required>{{ board['content'] }}</textarea>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" type="submit">수정</button>
+        <a href="{{ url_for('board.view', id=board['id']) }}" class="btn btn-danger">취소</a>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $('#editForm').on('submit', function (e) {
+        e.defaultPrevented();
+
+        if (!$('#title').val()) {
+            alert('제목을 입력하세요.');
+            $('#title').focus();
+            return false;
+        }
+
+        if (!$('#content').val().length) {
+            alert('내용을 입력하세요.');
+            $('#content').focus();
+            return false;
+        }
+    });
+</script>
+{% endblock %}

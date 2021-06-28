@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+	<table class="table table-bordered table-hover">
+		<thead class="thead-light">
+		<tr>
+			<th>이름</th>
+			<th>전화번호</th>
+			<th>이메일</th>
+			<th>날짜</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for user in users %}
+		<tr>
+			<td><a href="{{ url_for('user.view', id=user['id']) }}">{{ user['username'] }}</a></td>
+			<td>{{ user['phone'] }}</td>
+			<td>{{ user['email'] }}</td>
+			<td>{{ user['created'] }}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

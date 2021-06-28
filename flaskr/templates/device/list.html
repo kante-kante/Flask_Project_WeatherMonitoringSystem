@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>기기명</th>
+            <th>API KEY</th>
+            <th>모니터링</th>
+            <th>등록자</th>
+            <th>날짜</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for device in devices %}
+        <tr>
+            <td><a href="{{ url_for('device.view', id=device['id']) }}">{{ device['name'] }}</a></td>
+            <td>{{ device['api_key'] }}</td>
+            <td><a href="{{ url_for('monitoring.lists', id=device['id']) }}">모니터링</a></td>
+            <td>{{ device['username'] }}</td>
+            <td>{{ device['created'] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

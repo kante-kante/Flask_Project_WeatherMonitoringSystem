@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <form method="post" id="addForm">
+        <table class="table table-bordered table-hover">
+            <colgroup>
+                <col width="150">
+                <col>
+            </colgroup>
+            <tr>
+                <th>이름</th>
+                <td>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="이름" required autofocus>
+                </td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td>
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="전화번호" required>
+                </td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="이메일" required>
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" required>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" type="submit">등록</button>
+        <a href="{{ url_for('user.lists') }}" class="btn btn-danger">취소</a>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    var phoneRegExp = /^\d{11}$/;
+    var emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    var passwordRegExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
+    $('#addForm').on('submit', function (e) {
+        e.defaultPrevented();
+
+        if (!$('#name').val()) {
+            alert('이름을 입력하세요.');
+            $('#name').focus();
+            return false;
+        }
+
+        if ($('#name').val().length > 4) {
+            alert('이름은 최대 4자까지 입력가능합니다.');
+            $('#name').focus();
+            return false;
+        }
+
+        if (!phoneRegExp.test($('#phone').val())) {
+            alert('올바른 전화번호를 입력하세요.');
+            $('#phone').focus();
+            return false;
+        }
+
+        if (!emailRegExp.test($('#email').val())) {
+            alert('올바른 이메일을 입력하세요.');
+            $('#email').focus();
+            return false;
+        }
+
+        if (!passwordRegExp.test($('#password').val())) {
+            alert('올바른 비밀번호를 입력하세요.');
+            $('#password').focus();
+            return false;
+        }
+    });
+</script>
+{% endblock %}

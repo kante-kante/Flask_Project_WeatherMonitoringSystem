@@ -1,0 +1,66 @@
+{% extends 'base_auth.html' %}
+
+{% block content %}
+<form class="form-signin" method="post" id="registerForm">
+    <h1 class="h3 mb-3 font-weight-normal">가입</h1>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    <label for="username" class="sr-only">이름</label>
+    <input type="text" id="username" name="username" class="form-control" placeholder="이름" autofocus>
+    <label for="phone" class="sr-only">전화번호</label>
+    <input type="text" id="phone" name="phone" class="form-control" placeholder="전화번호(-는 제외)">
+    <label for="email" class="sr-only">이메일</label>
+    <input type="emil" id="email" name="email" class="form-control" placeholder="이메일">
+    <label for="password" class="sr-only">비밀번호</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">가입</button>
+    <p class="mt-3">
+        <a href="/auth/login">로그인</a>
+    </p>
+</form>
+{% endblock %}
+
+{% block script %}
+<script>
+    var phoneRegExp = /^\d{11}$/;
+    var emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    var passwordRegExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
+    $('#registerForm').on('submit', function (e) {
+        e.defaultPrevented();
+
+        if (!$('#username').val()) {
+            alert('이름을 입력하세요.');
+            $('#username').focus();
+            return false;
+        }
+
+        if ($('#name').val().length > 4) {
+            alert('이름은 최대 4자까지 입력가능합니다.');
+            $('#name').focus();
+            return false;
+        }
+
+        if (!phoneRegExp.test($('#phone').val())) {
+            alert('올바른 전화번호를 입력하세요.');
+            $('#phone').focus();
+            return false;
+        }
+
+        if (!emailRegExp.test($('#email').val())) {
+            alert('올바른 이메일을 입력하세요.');
+            $('#email').focus();
+            return false;
+        }
+
+        if (!passwordRegExp.test($('#password').val())) {
+            alert('올바른 비밀번호를 입력하세요.');
+            $('#password').focus();
+            return false;
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <table class="table table-bordered table-hover">
+        <colgroup>
+            <col width="150">
+            <col>
+        </colgroup>
+        <tr>
+            <th>기기명</th>
+            <td>{{ device['name'] }}</td>
+        </tr>
+        <tr>
+            <th>API KEY</th>
+            <td>{{ device['api_key'] }}</td>
+        </tr>
+        <tr>
+            <th>등록자</th>
+            <td>{{ device['username'] }}</td>
+        </tr>
+        <tr>
+            <th>등록</th>
+            <td>{{ device['created'] }}</td>
+        </tr>
+        <tr>
+            <th>수정</th>
+            <td>{{ device['updated'] }}</td>
+        </tr>
+    </table>
+    <a href="{{ url_for('device.lists') }}" class="btn btn-success">목록</a>
+    <a href="{{ url_for('device.edit', id=device['id']) }}" class="btn btn-warning">수정</a>
+    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal">삭제</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<form method="post" action="{{ url_for('device.delete') }}" id="deleteForm">
+    <input type="hidden" name="id" value="{{ device['id'] }}">
+</form>
+<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">삭제</h5>
+            </div>
+            <div class="modal-body">
+                <p>삭제된 데이터는 복구 불가능합니다.<br>삭제하시겠습니까?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+
+                <button type="button" class="btn btn-danger" id="deleteButton">삭제</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#deleteButton').on('click', function (e) {
+        //e.defaultPrevented();
+        $('#deleteForm').submit();
+    });
+</script>
+{% endblock %}

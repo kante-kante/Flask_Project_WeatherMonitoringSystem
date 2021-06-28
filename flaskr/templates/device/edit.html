@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <form method="post" id="editForm">
+        <table class="table table-bordered table-hover">
+            <colgroup>
+                <col width="150">
+                <col>
+            </colgroup>
+            <tr>
+                <th>기기명</th>
+                <td>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="기기명" value="{{ device['name'] }}" required autofocus>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" type="submit">수정</button>
+        <a href="{{ url_for('device.view', id=device['id']) }}" class="btn btn-danger">취소</a>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $('#editForm').on('submit', function (e) {
+        e.defaultPrevented();
+
+        if (!$('#name').val()) {
+            alert('기기명을 입력하세요.');
+            $('#name').focus();
+            return false;
+        }
+    });
+</script>
+{% endblock %}

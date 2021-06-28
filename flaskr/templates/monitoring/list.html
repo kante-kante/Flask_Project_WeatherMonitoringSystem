@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>cpu_usage</th>
+            <th>memory_total</th>
+            <th>memory_available</th>
+            <th>memory_percent</th>
+            <th>memory_used</th>
+            <th>memory_free</th>
+            <th>disk_total</th>
+            <th>disk_percent</th>
+            <th>disk_used</th>
+            <th>disk_free</th>
+            <th>dust_ratio</th>
+            <th>humidity</th>
+            <th>temperature</th>
+            <th>날짜</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for monitoring in monitorings %}
+        <tr>
+            <td>{{ monitoring['cpu_usage'] }}</td>
+            <td>{{ monitoring['memory_total'] }}</td>
+            <td>{{ monitoring['memory_available'] }}</td>
+            <td>{{ monitoring['memory_percent'] }}</td>
+            <td>{{ monitoring['memory_used'] }}</td>
+            <td>{{ monitoring['memory_free'] }}</td>
+            <td>{{ monitoring['disk_total'] }}</td>
+            <td>{{ monitoring['disk_percent'] }}</td>
+            <td>{{ monitoring['disk_used'] }}</td>
+            <td>{{ monitoring['disk_free'] }}</td>
+            <td>{{ monitoring['dust_ratio'] }}</td>
+            <td>{{ monitoring['h_ratio'] }} %</td>
+            <td>{{ monitoring['t_ratio'] }} C</td>
+            <td>{{ monitoring['created'] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
