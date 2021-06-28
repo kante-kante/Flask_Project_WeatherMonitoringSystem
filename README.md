@@ -1,4 +1,4 @@
-# 자원 모니터링 시스템
+# 날씨정보 모니터링 시스템
 
 ### 실행
 
@@ -25,7 +25,7 @@ flask init-db
 | 기능 | method | url |
 | --- | --- | --- |
 | 로그인 화면 | GET | /auth/login |
-| 로그인 처리 | POST | /auth/login |
+| 로그인 처리| POST | /auth/login |
 | 가입 화면 | GET | /auth/register |
 | 가입 처리 | POST | /auth/register |
 | 로그아웃 처리 | GET | /auth/logout |
@@ -40,4 +40,4 @@ flask init-db
 | GET | /board/update |
 | POST | /board/update/1 |
 | POST | /board/delete/1 |
-"# Python Flask�� �̿��� �������� ����͸� �ý���" 
+"# Python Flask¸¦ ÀÌ¿ëÇÑ ³¯¾¾Á¤º¸ ¸ð´ÏÅÍ¸µ ½Ã½ºÅÛ" 
