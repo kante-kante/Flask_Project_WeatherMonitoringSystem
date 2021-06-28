@@ -40,4 +40,11 @@ flask init-db
 | GET | /board/update |
 | POST | /board/update/1 |
 | POST | /board/delete/1 |
-"# Python Flask¸¦ ÀÌ¿ëÇÑ ³¯¾¾Á¤º¸ ¸ð´ÏÅÍ¸µ ½Ã½ºÅÛ" 
+
+## 참고사항 및 알림
+해당 프로젝트의 README.md를 수정중에 있습니다.
+빠르게 수정하겠습니다.
+
+해당 프로젝트는 FLASK 파이썬 웹 프레임워크를 사용하였으며
+라즈베리파이에서 센서 정보를 읽어 웹으로 보내주도록 전체적인 구성을 기획하였습니다.
+참고 URL: https://www.youtube.com/watch?v=08ClT0fghRM
