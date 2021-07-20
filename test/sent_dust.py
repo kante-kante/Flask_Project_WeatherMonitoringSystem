@@ -1,5 +1,5 @@
 import pigpio  # need to execute "sudo pigpiod" in advance
-
+import requests
 
 class sensor:
 
@@ -172,7 +172,6 @@ if __name__ == "__main__":
 
     pi.stop()  # Disconnect from Pi.
 
-import requests
 
 URL = 'http://192.168.219.101:5000/api/add'
 
